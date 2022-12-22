@@ -7,7 +7,7 @@ import { SentimentPageComponent } from './components/sentiment-page/sentiment-pa
 
 const routes: Routes = [
   { path: 'stock-list', component: HomepageComponent },
-  { path: '', pathMatch: 'prefix', redirectTo: '/stock-list'},
+  { path: '', pathMatch: 'full', redirectTo: '/stock-list'},
   { path: 'sentiment/:symbol', component: SentimentPageComponent },
   { path: '**', component: ErrorPageComponent }
 ];
