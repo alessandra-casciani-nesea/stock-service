@@ -6,7 +6,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { SentimentPageComponent } from './components/sentiment-page/sentiment-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: '/stock-list', component: HomepageComponent },
+  { path: '/', redirectTo: '/stock-list'},
   { path: 'sentiment/:symbol', component: SentimentPageComponent },
   { path: '**', component: ErrorPageComponent }
 ];
