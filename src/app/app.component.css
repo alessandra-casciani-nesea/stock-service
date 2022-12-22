@@ -1,0 +1,7 @@
+body {
+    background-color: lightgrey;
+}
+
+li.list-group-item {
+    border: none;
+}

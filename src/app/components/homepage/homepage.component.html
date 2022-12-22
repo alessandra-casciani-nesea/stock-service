@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="card shadow mb-4 mt-4 col-6 text-center">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h5 class="card-title mb-3">
+          Enter the symbol of a stock to track (i.e. AAPL, TSLA, GOOGL)
+        </h5>
+        <input
+          type="text"
+          id="stockInput"
+          maxlength="5"
+          class="form-control mb-3 shadow-sm"
+          formControlName="stockInput"/>
+        <button
+          type="submit"
+          class="btn btn-primary shadow-sm"
+          id="trackBtn"
+          [disabled]="form.invalid">
+          Track Stock
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <app-stock-box
+    class="col col-lg-4 col-md-6 col-sm-12 col-xs-12"
+    *ngFor="let stockSymbol of stocks"
+    [stockSymbol]="stockSymbol"
+    (removeBox)="removeStock($event)"
+  ></app-stock-box>
+</div>

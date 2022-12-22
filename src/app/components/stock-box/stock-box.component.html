@@ -1,0 +1,55 @@
+<div class="card shadow mb-3" *ngIf="stock$ | async as stock">
+  <div class="card-header">
+    <div class="row">
+      <h6 class="col-11">{{ stock.name }} ({{ stockSymbol }})</h6>
+      <div class="col-1 close-button" [id]="closeBtnId" (click)="deleteBox()">X</div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-8">
+        <ul class="list-group list-group-light list-group-small">
+          <li class="list-group-item px-2"><b>Change today:</b> {{ stock.todayChange }}%</li>
+          <li class="list-group-item px-2"><b>Current price:</b> {{ stock.currentPrice | currency:'USD' }} </li>
+          <li class="list-group-item px-2"><b>Opening price:</b> {{ stock.openingPrice | currency:'USD' }} </li>
+          <li class="list-group-item px-2"><b>High price:</b> {{ stock.highPrice | currency:'USD'}} </li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <span
+          [ngClass]="stock.isProfit === true ? 'fa fa-arrow-circle-up arrow-up' : 'fa fa-arrow-circle-down arrow-down'"></span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <a [routerLink]="['/sentiment', stockSymbol]" class="btn btn-primary shadow" [id]="sentimentBtnId">Go to social
+      sentiment details</a>
+  </div>
+</div>
+
+<div *ngIf="loading" class="card shadow mb-3">
+  <div class="card-header">
+    <div class="row">
+      <h6 class="col-11 card-title placeholder-glow"><span class="placeholder col-6"></span></h6>
+      <div class="col-1 card-title placeholder"></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-8">
+        <ul class="list-group list-group-light list-group-small">
+          <li class="list-group-item px-2 placeholder col-8"></li>
+          <li class="list-group-item px-2 placeholder col-8"></li>
+          <li class="list-group-item px-2 placeholder col-8"></li>
+          <li class="list-group-item px-2 placeholder col-8"></li>
+        </ul>
+      </div>
+      <div class="placeholder col-4"></div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <a class="btn btn-primary shadow disabled placeholder col-6"></a>
+  </div>
+</div>
+
+

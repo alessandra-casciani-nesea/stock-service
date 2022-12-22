@@ -1,0 +1,30 @@
+<div class="card mt-4">
+  <div class="card-header">
+    <h5 class="card-title" *ngIf="stockName$ | async as stockName">{{stockName}} ({{symbol}})</h5>
+  </div>
+  <div class="card-body">
+    <div class="card-group">
+      <div class="card" *ngFor="let sentiment of sentiments$ | async">
+        <div class="card-body">
+        <h4 class="card-title text-center">{{ sentiment.month | monthsName }} {{ sentiment.year }}</h4>
+        <div class="row" *ngIf="sentiment.change">
+          <div class="col-8" >
+            <ul class="list-group list-group-light list-group-small">
+              <li class="list-group-item px-2"><b>Change:</b> {{ sentiment.change }}</li>
+              <li class="list-group-item px-2"><b>MSPR:</b> {{ sentiment.mspr | number:'2.0-2' }}</li>
+            </ul>
+          </div>
+          <div class="col-4">
+            <span [ngClass]="calculateProfit(sentiment.change) ? 'fa fa-arrow-circle-up arrow-up' : 'fa fa-arrow-circle-down arrow-down'"></span>
+          </div>
+        </div>
+          <p *ngIf="!sentiment.change" class="card-text text-center">No data available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col align-self-center mb-3">
+    <a routerLink="/" class="btn btn-primary shadow" id="backBtn">Back to list of stocks</a>
+  </div>
+</div>
+
